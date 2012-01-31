@@ -11,12 +11,13 @@
 #include "Idle.h"
 #include "Player.h"
 #include "FightGame.h"
+#include "Settings.h"
 #include <iostream>
 
 Stagger* Stagger::ptr = NULL;
 
 //This constructor needs to register the state
-Stagger::Stagger() : duration(0.75)
+Stagger::Stagger() : duration(Settings::Instance()->getDouble("StaggerDuration"))
 {
   stateID = State::registerState("Stagger", this);
 }

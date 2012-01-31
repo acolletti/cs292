@@ -12,13 +12,14 @@
 #include "Idle.h"
 #include "Player.h"
 #include "FightGame.h"
+#include "Settings.h"
 #include <iostream>
 
 AttackUp* AttackUp::ptr = NULL;
 
 //This constructor needs to register the state
-AttackUp::AttackUp() : duration(0.75),
-                       prepTime(0.25)
+AttackUp::AttackUp() : duration(Settings::Instance()->getDouble("AttUpDuration")),
+                       prepTime(Settings::Instance()->getDouble("AttUpPrep"))
 {
   stateID = State::registerState("Attack Up", this);
 }

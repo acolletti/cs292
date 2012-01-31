@@ -24,10 +24,15 @@ FightGame::FightGame(std::string n1, std::string n2)
 //Updates the game state
 void FightGame::update(double delta)
 {
-  if(players[0].run(delta))
+  //Make things fair so that one player is not always updated before the other
+  static bool first = false;
+  
+  if(players[first ? 0 : 1].run(delta))
   {
-    players[1].run(delta);
+    players[first ? 1 : 0].run(delta);
   }
+  
+  first = !first;
 }
 
 //Get a player to change its state
