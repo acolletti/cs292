@@ -11,6 +11,12 @@
 #include "Idle.h"
 #include "Player.h"
 #include <iostream>
+#include "AttackUp.h"
+#include "AttackMid.h"
+#include "AttackLow.h"
+#include "DefendUp.h"
+#include "DefendMid.h"
+#include "DefendLow.h"
 
 //Constructor
 FightGame::FightGame(std::string n1, std::string n2)
@@ -19,6 +25,15 @@ FightGame::FightGame(std::string n1, std::string n2)
   players[1] = Player(this, n2);
   players[0].changeState(Idle::Instance()->getStateID());
   players[1].changeState(Idle::Instance()->getStateID());
+  
+  //Make sure the states are registered
+  Idle::Instance();
+  AttackUp::Instance();
+  AttackMid::Instance();
+  AttackLow::Instance();
+  DefendUp::Instance();
+  DefendMid::Instance();
+  DefendLow::Instance();
 }
 
 //Updates the game state

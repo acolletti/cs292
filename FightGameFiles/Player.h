@@ -40,7 +40,7 @@ public:
   bool run(double delta);
   
   //Attempts to change the state
-  void changeState(int state);
+  bool changeState(int state);
   void forceChange(int state);
   
   //Accessor functions
@@ -59,4 +59,4 @@ public:
   
 };
 
-#endif PLAYER_H
+#endif

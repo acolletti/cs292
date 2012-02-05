@@ -39,6 +39,7 @@ public:
   int getStateID() {return stateID;}
   std::string getName();
   static State* getState(int index);
+  static State* getState(std::string name);
   
   //Registers a state and returns a unique number that identifies it
   static int registerState(std::string name, State* state);

@@ -1,5 +1,5 @@
 /*
- *  AttackUp.cpp
+ *  AttackMid.cpp
  *  StateConcept
  *
  *  Created by Nancy Bailey on 1/24/12.
@@ -7,7 +7,7 @@
  *
  */
 
-#include "AttackUp.h"
+#include "AttackMid.h"
 #include "Stagger.h"
 #include "Idle.h"
 #include "Player.h"
@@ -17,38 +17,38 @@
 #include "Settings.h"
 #include <iostream>
 
-AttackUp* AttackUp::ptr = NULL;
+AttackMid* AttackMid::ptr = NULL;
 
 //This constructor needs to register the state
-AttackUp::AttackUp() : duration(Settings::Instance()->getDouble("AttUpDuration")),
-                       prepTime(Settings::Instance()->getDouble("AttUpPrep"))
+AttackMid::AttackMid() : duration(Settings::Instance()->getDouble("AttMidDuration")),
+prepTime(Settings::Instance()->getDouble("AttMidPrep"))
 {
-  stateID = State::registerState("Attack Up", this);
+  stateID = State::registerState("Attack Mid", this);
 }
 
 //Returns the single instance of the class
-AttackUp* AttackUp::Instance()
+AttackMid* AttackMid::Instance()
 {
   if(!ptr)
   {
-    ptr = new AttackUp();
+    ptr = new AttackMid();
   }
   return ptr;
 }
 
 //Function called whenever the player enters this state
-void AttackUp::enterState(Player* p)
+void AttackMid::enterState(Player* p)
 {
   //Initialize the player variables
   p->setStateTime(0);
   p->setUserData(0);
   
   //Send a little message for debugging purposes
-  std::cout << p->getName() << " has started an upper attack\n";
+  std::cout << p->getName() << " has started a mid attack\n";
 }
 
 //This function is called when the state needs to update itself
-bool AttackUp::run(Player* p, double delta)
+bool AttackMid::run(Player* p, double delta)
 {
   //Update player timer
   p->incStateTime(delta);
@@ -63,7 +63,7 @@ bool AttackUp::run(Player* p, double delta)
     //Either go to a staggered state or advance if success or not
     if(success)
     {
-      std::cout << p->getName() << " succeeded in up attack\n";
+      std::cout << p->getName() << " succeeded in mid attack\n";
       p->forceChange(Advance::Instance()->getStateID());
       other->forceChange(Hit::Instance()->getStateID());
       return false;
@@ -79,14 +79,14 @@ bool AttackUp::run(Player* p, double delta)
 }
 
 //This function is called when the player leaves the state
-void AttackUp::leaveState(Player* p)
+void AttackMid::leaveState(Player* p)
 {
   p->setStateTime(0);
-  std::cout << p->getName() << " is leaving upper attack state\n";
+  std::cout << p->getName() << " is leaving mid attack state\n";
 }
 
 //This function is called whenever a player receives a hit
-bool AttackUp::hit(Player* p, int type)
+bool AttackMid::hit(Player* p, int type)
 {
   //Something needs to be added so that the player can tell what
   //Type of hit was dealt to it
@@ -104,7 +104,7 @@ bool AttackUp::hit(Player* p, int type)
 
 //This function specifies whether or not the player can transition from
 //This state to the given state
-bool AttackUp::canTransition(Player* p, int index)
+bool AttackMid::canTransition(Player* p, int index)
 {
   if(index == Stagger::Instance()->getStateID())
   {

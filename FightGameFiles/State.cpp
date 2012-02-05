@@ -9,6 +9,8 @@
 
 #include "State.h"
 #include <string>
+#include <algorithm>
+#include <iostream>
 
 //Set up static variables to help identify different states
 std::vector<std::string> State::names = std::vector<std::string>();
@@ -41,6 +43,18 @@ State* State::getState(int index)
   }
   else
   {
-    return NULL;
+    return 0;
   }
+}
+
+//Access a state by name; returns a null pointer if there is no state with the
+//corresponding name
+State* State::getState(std::string name)
+{
+  for(unsigned int x = 0; x < names.size(); ++x)
+  {
+    if(name == names[x])
+      return stateInstances[x];
+  }
+  return 0;
 }

@@ -38,7 +38,7 @@ bool Player::run(double delta)
 }
 
 //This attempts to change the state of the player
-void Player::changeState(int state)
+bool Player::changeState(int state)
 {
   //Make sure the player is already in a state
   if(currentState)
@@ -52,6 +52,7 @@ void Player::changeState(int state)
          currentState->leaveState(this);
          currentState = nextState;
          currentState->enterState(this);
+        return true;
       }
     }
   }
@@ -62,7 +63,9 @@ void Player::changeState(int state)
     {
       currentState->enterState(this);
     }
+    return true;
   }
+  return false;
 }
 
 //This forces a state change and ignores if it can or not

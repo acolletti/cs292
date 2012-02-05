@@ -19,7 +19,16 @@ Settings::Settings()
   //Attack up variables
   doubleData["AttUpDuration"] = 0.75;
   doubleData["AttUpPrep"] = 0.25;
+  doubleData["AttMidDuration"] = 0.75;
+  doubleData["AttMidPrep"] = 0.25;
+  doubleData["AttLowDuration"] = 0.75;
+  doubleData["AttLowPrep"] = 0.25;
   doubleData["StaggerDuration"] = 0.75;
+  doubleData["DefUpPrep"] = 0.50;
+  doubleData["DefMidPrep"] = 0.50;
+  doubleData["DefLowPrep"] = 0.50;
+  doubleData["HitDuration"] = 0.50;
+  doubleData["AdvanceDuration"] = 0.50;
 }
 
 //Instance function used to access the single instance of the singleton
